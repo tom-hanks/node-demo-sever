@@ -15,11 +15,34 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-
-
+// 以下注释掉的是vue项目需要调用的方法
+// let obj = {
+//     action: 'get_mp_video_play_url',
+//     preview: '0',
+//     __biz: '',
+//     mid: '',
+//     idx: '',
+//     vid: 'wxv_1528097340622979077',
+//     uin: '',
+//     key: '',
+//     pass_ticket: '',
+//     wxtoken: '',
+//     appmsg_token: '',
+//     x5: '0',
+//     f: 'json'
+// }
+// this.$axios.get('http://10.5.50.32:3000/jzg', {
+// params: {
+//   ...obj
+// }
+// }).then(res => {
+// console.log('res===',res)
+// }).catch(err=>{
+// console.log('err===',err)
+// })
 app.use('/jzg',createProxyMiddleware({
     // target:'https://mp.weixin.qq.com/mp/videoplayer?action=get_mp_video_play_url&preview=0&__biz=&mid=&idx=&vid=wxv_1530858218581770240&uin=&key=&pass_ticket=&wxtoken=&appmsg_token=&x5=0&f=json',//代理到哪里去
-    target:'https://mp.weixin.qq.com/mp/videoplayer',//代理到哪里去
+    target:'https://mp.weixin.qq.com/mp/videoplayer?action=get_mp_video_play_url&preview=0&__biz=&mid=&idx=&vid=wxv_1530858218581770240&uin=&key=&pass_ticket=&wxtoken=&appmsg_token=&x5=0&f=json',//代理到哪里去
     changeOrigin:true,//如果设置为true,那么本地会虚拟一个服务端接收你的请求并代你发送该请求，这样就不会有跨域问题了
     onProxyReq(proxyReq, req, res) {
         // proxyReq.setHeader('cookie', 'SERVER_TOKEN=153b8baf-4b2d');
